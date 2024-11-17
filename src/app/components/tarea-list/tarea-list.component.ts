@@ -105,7 +105,7 @@ export class TareaListComponent {
     this.tareaService.createTareas({
       tarea: tareaData.tarea,
       descripcion: tareaData.descripcion,
-      idUsuario: tareaData.Usuarioos?.idUsuario
+      idUsuario: tareaData.usuarioos?.idUsuario
     }).subscribe(() => {
       this.loadTarea();
       this.displayDialog = false;

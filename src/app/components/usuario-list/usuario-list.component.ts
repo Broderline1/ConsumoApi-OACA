@@ -7,6 +7,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
 import { UserModel } from '../../models/user.model';
+import { UsuarioService } from '../../services/usuario/usuario.service';
 
 @Component({
   selector: 'app-usuario-list',
@@ -20,16 +21,26 @@ export class UsuarioListComponent {
   displayDialog: boolean = false;
   usuarioForm!: FormGroup;
   
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private usuarioService: UsuarioService) {}
 
   ngOnInit(){
-        this.usuarioForm = this.fb.group({
+    this.usuarioForm = this.fb.group({
       IdUsuario: [null],
       nombre: ['', Validators.required],
       usuario: ['', Validators.required],
       contrasena: ['', Validators.required],
     });
+
+    this.loadUsuarios();
   }
+
+  loadUsuarios() {
+    this.usuarioService.getUsuarios().subscribe((data) => {
+      this.usuarios = data;
+      console.log(data)
+    });
+  }
+
   openDialog(){
     this.displayDialog = true;
   }

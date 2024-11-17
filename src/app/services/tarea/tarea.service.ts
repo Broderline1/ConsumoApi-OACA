@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, ObservableLike, ObservedValueOf } from 'rxjs';
 import { TareaModel } from '../../models/tarea.model';
 import { CreateTareaModel } from '../../models/createtarea.model';
-import { UpdateTareaModel } from './updatetarea.model';
+import { UpdateTareaModel } from '../../models/updatetarea.model';
 
 @Injectable({
   providedIn: 'root'
