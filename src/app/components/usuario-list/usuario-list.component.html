@@ -17,11 +17,11 @@
 
             <ng-template pTemplate="body" let-usuario>
                 <tr [@fadeInOut]>
-                    <td>{{usuario.nombres}}</td>
+                    <td>{{usuario.nombre}}</td>
                     <td>{{usuario.usuario}}</td>
                     <td class="text-center">
-                        <button pButton type="button" icon="pi pi-pencil" class="btn btn-warning me-2"></button>
-                        <button pButton type="button" icon="pi pi-trash" class="btn btn-danger"></button>
+                        <button (click)="openDialog(usuario)" label="Editar" pButton type="button" icon="pi pi-pencil" class="btn btn-warning me-2"></button>
+                        <button (click)="deleteUsuario(usuario.IdUsuario)" label="Eliminar" pButton type="button" icon="pi pi-trash" class="btn btn-danger"></button>
                     </td>
                 </tr>
             </ng-template>
@@ -32,22 +32,22 @@
 <p-dialog header="Usuarios" [(visible)]="displayDialog" [modal]="true" 
 [closable]="true" [style]="{width: '400px'}">
 
-<form [formGroup]="usuarioForm">
+<form (ngSubmit)="saveUsuario()" [formGroup]="usuarioForm">
     <div class="mb-3">
-        <label for="nombre" class="form-label">Nombres</label>
-        <input id="nombre" pInputText formControlName="nombre" class="form-control">
+        <label for="names" class="form-label">Nombre</label>
+        <input id="names" pInputText formControlName="names" class="form-control">
     </div>
     <div class="mb-3">
-        <label for="usuario" class="form-label">Usuario</label>
-        <input id="usuario" pInputText formControlName="usuario" class="form-control">
+        <label for="users" class="form-label">Usuario</label>
+        <input id="users" pInputText formControlName="users" class="form-control">
     </div>
     <div class="mb-3">
-        <label for="contrasena" class="form-label">Contraseña</label>
-        <input id="contrasena" pInputText formControlName="contrasena" class="form-control">
+        <label for="password" class="form-label">Contraseña</label>
+        <input id="password" pInputText formControlName="password" class="form-control">
     </div>
     <div class="d-flex justify-content-end">
-        <button (click)="closeDialog()" pButton type="button" label="Cancelar" class="btn btn-secondary me-2"></button>
-        <button pButton type="button" label="Guardar" class="btn btn-primary"></button>
+        <button  (click)="closeDialog()" pButton type="button" label="Cancelar" class="btn btn-secondary me-2"></button>
+        <button pButton type="submit" label="Guardar" class="btn btn-primary"></button>
     </div>
 </form>
 
